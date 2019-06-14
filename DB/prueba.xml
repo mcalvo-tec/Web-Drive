@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><company>
+	<staff id="1001">
+		<firstname>yong</firstname>
+		<lastname>mook kim</lastname>
+		<nickname>mkyong</nickname>
+		<salary>100000</salary>
+	</staff>
+	
+	<staff id="1555">
+		<firstname>Alex</firstname>
+		<lastname>Lopez</lastname>
+		<nickname>Alo</nickname>
+		<salary>12</salary>
+	</staff><staff id="4545">
+		<firstname>Al</firstname>
+		<lastname>Godinez</lastname>
+		<nickname>Gof</nickname>
+		<salary>125</salary>
+		</staff>
+</company>
