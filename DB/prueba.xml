@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><company>
-	<staff id="1001">
+	<staff id="1001" path="abcd">
 		<firstname>yong</firstname>
 		<lastname>mook kim</lastname>
 		<nickname>mkyong</nickname>
@@ -11,10 +11,11 @@
 		<lastname>Lopez</lastname>
 		<nickname>Alo</nickname>
 		<salary>12</salary>
-	</staff><staff id="4545">
+	</staff>
+	<staff id="4545">
 		<firstname>Al</firstname>
 		<lastname>Godinez</lastname>
 		<nickname>Gof</nickname>
 		<salary>125</salary>
-		</staff>
+	</staff>
 </company>
