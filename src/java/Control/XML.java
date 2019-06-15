@@ -71,7 +71,9 @@ public class XML {
         }    
     }
     
-    public static void AnadirCaracteristica(String path,String id,String nomb,String apell,String nick,String sala) 
+    public static void AddUser(String path,String id,String username,String password,String name,String lastName,
+            String rootId, String rootName, String rootPath, String rootSize,
+            String folderId, String folderName, String folderPath,String folderSize) 
         throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException{
 
         File fXmlFile = new File(path);
@@ -82,26 +84,28 @@ public class XML {
         Element root = doc.getDocumentElement();
 
         //Creamos un nuevo elemento en la casa
-        Element staff = doc.createElement("staff");
-        staff.setAttribute("id", id);
+        Element user = doc.createElement("user");
+        user.setAttribute("id", id);
+        user.setAttribute("name", name);
+        user.setAttribute("lastename", lastName);
+        user.setAttribute("username", username);
+        user.setAttribute("password", password);
 
-        Element firstname = doc.createElement("firstname");
-        firstname.appendChild(doc.createTextNode(nomb));
-        staff.appendChild(firstname);
+        Element rootUser = doc.createElement("root");
+        rootUser.setAttribute("id", rootId);
+        rootUser.setAttribute("name", rootName);
+        rootUser.setAttribute("path", rootPath);
+        rootUser.setAttribute("size", rootSize);
+        user.appendChild(rootUser);
 
-        Element lastname = doc.createElement("lastname");
-        lastname.appendChild(doc.createTextNode(apell));
-        staff.appendChild(lastname);
+        Element folder = doc.createElement("folder");
+        folder.setAttribute("id", folderId);
+        folder.setAttribute("name", folderName);
+        folder.setAttribute("path", folderPath);
+        folder.setAttribute("size", folderSize);    
+        rootUser.appendChild(folder);
 
-        Element nickname = doc.createElement("nickname");
-        nickname.appendChild(doc.createTextNode(nick));
-        staff.appendChild(nickname);
-
-        Element salary = doc.createElement("salary");
-        salary.appendChild(doc.createTextNode(sala));
-        staff.appendChild(salary);
-
-        root.appendChild(staff);
+        root.appendChild(user);
 
         DOMSource source = new DOMSource(doc);
 

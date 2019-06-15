@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Inicio</title>
+        <title>Registro</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,26 +23,32 @@ and open the template in the editor.
               <a class="navbar-brand" href="#">Web Drive</a>  
             </div>  
             <ul class="nav navbar-nav navbar-right">  
-                <li><a href="registry.html" ><span class="glyphicon glyphicon-user" >  </span> Sign Up</a></li>   
+              <li><a href="index.html"><span class="glyphicon glyphicon-user"></span> Log in</a></li>   
             </ul>  
           </div>  
         </nav>  
         
-        <div class="login-form">    
-            <form action="login" method="post">
-                        <div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
-                <h4 class="modal-title">Login to Your Account</h4>
+        <div class="registry-form">    
+            <form action="registry" method="post">
+                <h4 class="modal-title">Sign Up</h4>
                 <div class="form-group">
                     <input name="txtBox_username" id="txtBox_username" type="text" class="form-control" placeholder="Username" required="required">
                 </div>
                 <div class="form-group">
                     <input name="txtBox_password" id="txtBox_password" type="password" class="form-control" placeholder="Password" required="required">
                 </div>
+                <div class="form-group">
+                    <input name="txtBox_name" id="txtBox_name" type="text" class="form-control" placeholder="Name" required="required">
+                </div>
+                <div class="form-group">
+                    <input name="txtBox_lasteName" id="txtBox_lasteName" type="text" class="form-control" placeholder="Last Name" required="required">
+                </div>
+                
                 <div class="form-group small clearfix">
                     <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
                     <a href="#" class="forgot-link">Forgot Password?</a>
                 </div> 
-                <input type="submit" name="btnLogIn" value="LogIn" class="btn btn-primary btn-block btn-lg">              
+                <input type="submit" name="btnSignUp" value="Sign Up" class="btn btn-primary btn-block btn-lg">              
             </form>			
             <div class="text-center small">Don't have an account? <a href="#">Sign up</a></div>
         </div>
@@ -54,3 +60,4 @@ and open the template in the editor.
 
     </body>
 </html>
+

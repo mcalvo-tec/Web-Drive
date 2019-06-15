@@ -1,22 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<users>
-	<user username="andre" password="holi">
-		<firstname>yong</firstname>
-		<lastname>mook kim</lastname>
-		<nickname>mkyong</nickname>
-		<salary>100000</salary>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><users>
+	<user id="1" lastname="Rodriguez" name="Sixto" password="holi" username="andre">
+		<root id="r1" name="Mi unidad" path="" size="1024MB">
+			<folder id="f1" name="Mis Documentos" path="" size="600MB">
+				
+			</folder>
+		</root>
+		<sharedFolder/>
 	</user>
-	
-	<user username="1555" password="admin123">
-		<firstname>Alex</firstname>
-		<lastname>Lopez</lastname>
-		<nickname>Alo</nickname>
-		<salary>12</salary>
-	</user>
-	<user username="4545" password="admin123">
-		<firstname>Al</firstname>
-		<lastname>Godinez</lastname>
-		<nickname>Gof</nickname>
-		<salary>125</salary>
-	</user>
-</users>
+<user id="2" lastename="arroyo" name="andre" password="123" username="ana"><root id="r1" name="Mi unidad" path="" size="1024MB"><folder id="f1" name="Mis Documentos" path="" size="600MB"/></root></user></users>
