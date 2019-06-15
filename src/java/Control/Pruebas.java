@@ -21,7 +21,8 @@ public class Pruebas {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, TransformerException {
         // TODO code application logic here
         
-        String path = "C:\\Users\\Andre\\Documents\\TEC\\IX Semestre\\Sistemas Operativos\\Xml\\prueba.xml";
+        String path;
+        path = "DB\\prueba.xml";
         
         /*XML.AnadirCaracteristica("C:\\Users\\Andre\\Documents\\TEC\\IX Semestre\\Sistemas Operativos\\Xml\\prueba.xml",
                 "4545", "Al", "Godinez", "Gof", "125");*/

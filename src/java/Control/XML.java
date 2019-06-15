@@ -29,50 +29,48 @@ import org.xml.sax.SAXException;
  * @author Andre
  */
 public class XML {
-
     
     public static void leeXml(String path){
-         try {
+        try {
+            File fXmlFile = new File(path);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
 
-	File fXmlFile = new File(path);
-	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	Document doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
 
-	doc.getDocumentElement().normalize();
+            System.out.println("Raiz :" + doc.getDocumentElement().getNodeName());
 
-	System.out.println("Raiz :" + doc.getDocumentElement().getNodeName());
-			
-	NodeList nList = doc.getElementsByTagName("staff");
-			
-	System.out.println("----------------------------");
+            NodeList nList = doc.getElementsByTagName("staff");
 
-	for (int temp = 0; temp < nList.getLength(); temp++) {
+            System.out.println("----------------------------");
 
-		Node nNode = nList.item(temp);
-				
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
-				
-		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+            for (int temp = 0; temp < nList.getLength(); temp++) {
 
-			Element eElement = (Element) nNode;
+                Node nNode = nList.item(temp);
 
-			System.out.println("Staff id : " + eElement.getAttribute("id"));
-			System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-			System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-			System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-			System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+                System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
-		}
-	}
-    } catch (Exception e) {
-	e.printStackTrace();
-    }
-         
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+
+                    System.out.println("Staff id : " + eElement.getAttribute("id"));
+                    System.out.println("Staff path : " + eElement.getAttribute("path"));
+                    System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
+                    System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
+                    System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
+                    System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }    
     }
     
     public static void AnadirCaracteristica(String path,String id,String nomb,String apell,String nick,String sala) 
-            throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException{
+        throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException{
 
         File fXmlFile = new File(path);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -130,14 +128,14 @@ public class XML {
         Document doc = db.parse(new File(path));
         doc.getDocumentElement().normalize();
         NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("staff");
-            for (int temp = 0; temp < listaNodos.getLength(); temp++) {
-                    Node nodo = listaNodos.item(temp);		
-                    if (nodo.getNodeType() == Node.ELEMENT_NODE) {
-                            Element eElement = (Element) nodo;
-                            if(eElement.getAttribute("id").equals(id))
-                                flag = true;
-                    }
+        for (int temp = 0; temp < listaNodos.getLength(); temp++) {
+            Node nodo = listaNodos.item(temp);		
+            if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nodo;
+                if(eElement.getAttribute("id").equals(id))
+                    flag = true;
             }
+        }
         return flag;
     }
 
@@ -150,13 +148,13 @@ public class XML {
         
         NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("staff");
         for (int temp = 0; temp < listaNodos.getLength(); temp++) {
-                Node nodo = listaNodos.item(temp);		
-                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nodo;
-                    if (eElement.getElementsByTagName("firstname").item(0).getTextContent().equals((name))) {
-                        nodo.getParentNode().removeChild(nodo);
-                    }
+            Node nodo = listaNodos.item(temp);		
+            if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nodo;
+                if (eElement.getElementsByTagName("firstname").item(0).getTextContent().equals((name))) {
+                    nodo.getParentNode().removeChild(nodo);
                 }
+            }
         }
             
         DOMSource source = new DOMSource(doc);

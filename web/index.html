@@ -9,38 +9,44 @@ and open the template in the editor.
         <title>Inicio</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+        <!-- Proper style -->
+        <link href="style/index.css" rel="stylesheet">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Web Drive</a>
-        </div>
-      </div>
-    </nav>
+        <nav class="navbar navbar-inverse">  
+          <div class="container-fluid">  
+            <div class="navbar-header">  
+              <a class="navbar-brand" href="#">Web Drive</a>  
+            </div>  
+            <ul class="nav navbar-nav navbar-right">  
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>   
+            </ul>  
+          </div>  
+        </nav>  
         
-        <h2>Iniciar Sesión</h2>
-        <form class="form-horizontal" action="inicio" method="POST">
-            <div class="form-group">
-                <label for="txtBox_username" class="col-sm-2 control-label">Usuario</label>
-                <div class="col-xs-4">
-                    <input type ="text" ID="txtBox_username" class="form-control" placeholder="Usuario" />
+        <div class="login-form">    
+            <form action="login" method="post">
+                        <div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
+                <h4 class="modal-title">Login to Your Account</h4>
+                <div class="form-group">
+                    <input name="txtBox_username" id="txtBox_username" type="text" class="form-control" placeholder="Username" required="required">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="txtBox_password" class="col-sm-2 control-label">Contraseña</label>
-                <div class="col-xs-4">
-                    <input type ="text" ID="txtBox_password" class="form-control" placeholder="Contraseña" />
+                <div class="form-group">
+                    <input name="txtBox_password" id="txtBox_password" type="password" class="form-control" placeholder="Password" required="required">
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <input type="submit" name="btnLogIn" value="LogIn" class="btn btn-primary" />
-                </div>
-            </div>
-        </form>
+                <div class="form-group small clearfix">
+                    <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div> 
+                <input type="submit" name="btnLogIn" value="LogIn" class="btn btn-primary btn-block btn-lg">              
+            </form>			
+            <div class="text-center small">Don't have an account? <a href="#">Sign up</a></div>
+        </div>
+        
          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
