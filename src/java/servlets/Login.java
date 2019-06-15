@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import Control.XML;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -21,8 +26,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
+    String path = "C:\\Users\\Andre\\Documents\\GitHub\\Web-Drive\\DB\\prueba.xml";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParserConfigurationException, SAXException {
         
         response.setContentType("text/html");  
         try (PrintWriter out = response.getWriter()
@@ -30,8 +36,7 @@ public class Login extends HttpServlet {
         ) {
             String name=request.getParameter("txtBox_username");
             String password=request.getParameter("txtBox_password");
-            
-            if(password.equals("admin123"))
+            if(XML.encuentraUser(path, name,password) == true)
             {
                 //out.print("Welcome, "+name);
                 HttpSession session=request.getSession();
@@ -59,7 +64,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,7 +84,13 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

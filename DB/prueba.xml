@@ -1,21 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><company>
-	<staff id="1001" path="abcd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+	<user username="andre" password="holi">
 		<firstname>yong</firstname>
 		<lastname>mook kim</lastname>
 		<nickname>mkyong</nickname>
 		<salary>100000</salary>
-	</staff>
+	</user>
 	
-	<staff id="1555">
+	<user username="1555" password="admin123">
 		<firstname>Alex</firstname>
 		<lastname>Lopez</lastname>
 		<nickname>Alo</nickname>
 		<salary>12</salary>
-	</staff>
-	<staff id="4545">
+	</user>
+	<user username="4545" password="admin123">
 		<firstname>Al</firstname>
 		<lastname>Godinez</lastname>
 		<nickname>Gof</nickname>
 		<salary>125</salary>
-	</staff>
-</company>
+	</user>
+</users>

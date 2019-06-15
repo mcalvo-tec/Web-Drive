@@ -30,6 +30,8 @@ import org.xml.sax.SAXException;
  */
 public class XML {
     
+    //static String path = "DB\\prueba.xml";
+    
     public static void leeXml(String path){
         try {
             File fXmlFile = new File(path);
@@ -120,19 +122,20 @@ public class XML {
     }
     
     
-    public static boolean encuentraNodo(String path, String id) throws ParserConfigurationException, SAXException, IOException{
+    public static boolean encuentraUser(String path,String username,String pass) throws ParserConfigurationException, SAXException, IOException{
         boolean flag = false;
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(new File(path));
         doc.getDocumentElement().normalize();
-        NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("staff");
+        NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("user");
         for (int temp = 0; temp < listaNodos.getLength(); temp++) {
             Node nodo = listaNodos.item(temp);		
             if (nodo.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nodo;
-                if(eElement.getAttribute("id").equals(id))
+                if(eElement.getAttribute("username").equals(username) &&
+                        eElement.getAttribute("password").equals(pass))
                     flag = true;
             }
         }

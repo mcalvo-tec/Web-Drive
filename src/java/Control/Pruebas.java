@@ -29,8 +29,8 @@ public class Pruebas {
         
         //XML.eliminaNodo(path, "low");
         
-        XML.leeXml(path);
-        //System.out.println(XML.encuentraNodo(path, "4545"));
+        //XML.leeXml();
+        System.out.println(XML.encuentraUser(path,"marvin","hola"));
     }
     
 }
