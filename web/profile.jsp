@@ -1,9 +1,13 @@
+<%-- 
+    Document   : profile
+    Created on : 15/06/2019, 04:47:17 PM
+    Author     : Ace
+--%>
+
+<%@ page import="Models.User"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Drive Web</title>
@@ -16,8 +20,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+    
     <body>
-        
         <nav class="navbar navbar-inverse">  
           <div class="container-fluid">  
             <div class="navbar-header">  
@@ -31,7 +35,10 @@ and open the template in the editor.
               <li><a href="#">Page 3</a></li>  
             </ul>  
             <ul class="nav navbar-nav navbar-right">  
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>  
+              <li><a id="usernav" href="#">
+                      <span class="glyphicon glyphicon-user"></span> 
+                      <%out.println("Bienvenido, " + request.getSession(false).getAttribute("name"));%>
+                  </a></li>  
               <li><a href="Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>  
             </ul>  
           </div>  
