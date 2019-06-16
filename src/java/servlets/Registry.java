@@ -5,54 +5,46 @@
  */
 package servlets;
 
+import Control.XML;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import Control.XML;
-import java.nio.file.Paths;
 
 /**
  *
  * @author Andre
  */
-@WebServlet(name = "login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "registry", urlPatterns = {"/registry"})
+public class Registry extends HttpServlet {
+    
+    String path = "DB\\prueba.xml";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParserConfigurationException, SAXException {
-        
-        response.setContentType("text/html");  
-        try (PrintWriter out = response.getWriter()
-        //request.getRequestDispatcher("link.html").include(request, response);
-        ) {
-            String name = request.getParameter("txtBox_username");
-            String password = request.getParameter("txtBox_password");
-            String path;
-            path = "E:\\Users\\Ace\\Documents\\NetBeansProjects\\WebDrive\\DB\\prueba.xml";
-            boolean findUser = XML.encuentraUser(path, name, password);
+            throws ServletException, IOException, ParserConfigurationException, SAXException, TransformerException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             
-            if(findUser)
-            {
-                HttpSession session = request.getSession();
-                session.setAttribute("name",name);
-                response.sendRedirect("profile.jsp");
+            String username=request.getParameter("txtBox_username");
+            String password=request.getParameter("txtBox_password");
+            String name=request.getParameter("txtBox_name");
+            String lasteName=request.getParameter("txtBox_lasteName");
+            if (request.getParameter("btnSignUp") != null){
+                XML.AddUser(path, "2", username, password, name, lasteName, "r1", "Mi unidad", "", "1024MB", "f1",
+                        "Mis Documentos", "", "600MB");
+                out.print("Registro generado");
+                response.sendRedirect("index.html");
             }
-            else
-            {
-                out.print("Sorry, username or password error!");
-                request.getRequestDispatcher("index.html").include(request, response);
-            }
-            out.close(); 
-        }  
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,9 +62,11 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -90,9 +84,11 @@ public class Login extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

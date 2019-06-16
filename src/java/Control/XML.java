@@ -20,8 +20,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import static jdk.nashorn.internal.objects.NativeRegExp.source;
-import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
@@ -69,7 +67,9 @@ public class XML {
         }    
     }
     
-    public static void AnadirCaracteristica(String path,String id,String nomb,String apell,String nick,String sala) 
+    public static void AddUser(String path,String id,String username,String password,String name,String lastName,
+            String rootId, String rootName, String rootPath, String rootSize,
+            String folderId, String folderName, String folderPath,String folderSize) 
         throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerException{
 
         File fXmlFile = new File(path);
@@ -80,26 +80,28 @@ public class XML {
         Element root = doc.getDocumentElement();
 
         //Creamos un nuevo elemento en la casa
-        Element staff = doc.createElement("staff");
-        staff.setAttribute("id", id);
+        Element user = doc.createElement("user");
+        user.setAttribute("id", id);
+        user.setAttribute("name", name);
+        user.setAttribute("lastename", lastName);
+        user.setAttribute("username", username);
+        user.setAttribute("password", password);
 
-        Element firstname = doc.createElement("firstname");
-        firstname.appendChild(doc.createTextNode(nomb));
-        staff.appendChild(firstname);
+        Element rootUser = doc.createElement("root");
+        rootUser.setAttribute("id", rootId);
+        rootUser.setAttribute("name", rootName);
+        rootUser.setAttribute("path", rootPath);
+        rootUser.setAttribute("size", rootSize);
+        user.appendChild(rootUser);
 
-        Element lastname = doc.createElement("lastname");
-        lastname.appendChild(doc.createTextNode(apell));
-        staff.appendChild(lastname);
+        Element folder = doc.createElement("folder");
+        folder.setAttribute("id", folderId);
+        folder.setAttribute("name", folderName);
+        folder.setAttribute("path", folderPath);
+        folder.setAttribute("size", folderSize);    
+        rootUser.appendChild(folder);
 
-        Element nickname = doc.createElement("nickname");
-        nickname.appendChild(doc.createTextNode(nick));
-        staff.appendChild(nickname);
-
-        Element salary = doc.createElement("salary");
-        salary.appendChild(doc.createTextNode(sala));
-        staff.appendChild(salary);
-
-        root.appendChild(staff);
+        root.appendChild(user);
 
         DOMSource source = new DOMSource(doc);
 
@@ -120,19 +122,20 @@ public class XML {
     }
     
     
-    public static boolean encuentraNodo(String path, String id) throws ParserConfigurationException, SAXException, IOException{
+    public static boolean encuentraUser(String path,String username,String pass) throws ParserConfigurationException, SAXException, IOException{
         boolean flag = false;
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(new File(path));
         doc.getDocumentElement().normalize();
-        NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("staff");
+        NodeList listaNodos = doc.getDocumentElement().getElementsByTagName("user");
         for (int temp = 0; temp < listaNodos.getLength(); temp++) {
             Node nodo = listaNodos.item(temp);		
             if (nodo.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nodo;
-                if(eElement.getAttribute("id").equals(id))
+                if(eElement.getAttribute("username").equals(username) &&
+                        eElement.getAttribute("password").equals(pass))
                     flag = true;
             }
         }
